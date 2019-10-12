@@ -12,12 +12,10 @@ class CorePrediction():
     def __init__(self, settings):
         self.settings = settings
         self.model = None
-        self.scaler = None
 
-    def setup(self, settings, model, scaler=None):
+    def setup(self, settings, model):
         self.settings = settings
         self.model = model
-        self.scaler = scaler
 
     def get_prediction_folds_for_data_frame(self, data_frame, keep=[]):
         self.modifyDFForPrediction(data_frame)
@@ -29,24 +27,11 @@ class CorePrediction():
         return prediction
 
     def get_prediction_folds_for_folds(self, folds, keep=[]):
-        if self.scaler == 0 or self.scaler == None:
-            logger.debug("Scaler is zero")
-            unscaled = copy.deepcopy(folds)
-            prediction = self.model.predict(unscaled)
-            logger.debug("got prediction from model")
-            unscaled[0].drop(unscaled[0].index, inplace=True)
-            unscaled[1].drop(unscaled[1].index, inplace=True)
-        else:
-            logger.debug("Scaler is not zero")
-            scaled = self.applyScaler(self.scaler, folds, self.model.variables)
-            # TODO check if columns in keep exist in dataframe, if not -> ignore
-            logger.debug("scaled:")
-            logger.debug(scaled)
-            
-            prediction = self.model.predict(scaled)
-            logger.debug("got prediction from model")
-            scaled[0].drop(scaled[0].index, inplace=True)
-            scaled[1].drop(scaled[1].index, inplace=True)
+        unscaled = copy.deepcopy(folds)
+        prediction = self.model.predict(unscaled)
+        logger.debug("got prediction from model")
+        unscaled[0].drop(unscaled[0].index, inplace=True)
+        unscaled[1].drop(unscaled[1].index, inplace=True)
             
         if keep:
             logger.debug("keep specified")
@@ -76,21 +61,9 @@ class CorePrediction():
 
     @staticmethod
     def splitInFolds(data_frame):
-        data_frame["THU"] = 1  # Add dummy
         folds = [data_frame.query("abs(evt % 2) != 0 ").reset_index(drop=True),
                  data_frame.query("abs(evt % 2) == 0 ").reset_index(drop=True)]
         return folds
-
-    def applyScaler(self, scaler, folds, variables):
-        if not scaler or scaler == 0 or scaler == None:
-            return copy.deepcopy(folds)
-        newFolds = copy.deepcopy(folds)
-        for i, fold in enumerate(newFolds):
-            logger.debug("Length of folds: " + str(len(fold[variables])))
-            if len(fold[variables]) > 0:
-                fold[variables] = scaler[i].transform(fold[variables])
-        return newFolds
-
 
     def modifyDFForPrediction(self, DF):
         DF["evt"] = DF["evt"].astype('int64')

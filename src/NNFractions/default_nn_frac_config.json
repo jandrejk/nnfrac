@@ -3,9 +3,7 @@
     {
     	"path_type": "rel",
         "path_prefix": "-",
-        "model_path": "model/default",
-        "scaler_path": "model/default",
-        "scaler": "none"
+        "model_path": "model/default"
     }
 }
 

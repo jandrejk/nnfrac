@@ -14,20 +14,9 @@ class PredictionWrapper:
 
     def __init__(self, settings):
         self.settings = settings
-        self.scaler = 0
         self.model = 0
 
-    def setup(self, model_path, scaler_path):
-        if self.settings.scaler == "standard":
-            if os.path.exists(scaler_path):
-                logger.debug("Loading Scaler")
-                with open(scaler_path, "rb") as FSO:
-                    tmp = cPickle.load(FSO)
-                    self.scaler = [tmp, tmp]
-            else:
-                logger.critical("Fatal: Scaler file not found at {0}. Train model using -t first.".format(
-                    scaler_path))
-                return
+    def setup(self, model_path):
             
         import keras
         logger.info("Using keras" + keras.__version__)
@@ -40,10 +29,9 @@ class PredictionWrapper:
         return CorePrediction.splitInFolds(data_frame)
 
     def get_prediction_folds(self, data_frame, keep=[]):
-        logger.debug("in CorePrediction::get_prediction_folds")
-        logger.debug("scaler: " + str(self.scaler))
+        logger.debug("Entering get_prediction_folds...")
         prediction_handler = CorePrediction(self.settings)
-        prediction_handler.setup(self.settings, self.model, self.scaler)
+        prediction_handler.setup(self.settings, self.model)
 
         logger.debug("Got DataFrame, predicting...")
         prediction = prediction_handler.get_prediction_folds_for_data_frame(data_frame, keep=keep)

@@ -54,22 +54,13 @@ class NNFractions():
             realpath = os.path.dirname(os.path.realpath(__file__))
             model_path = os.path.join(realpath, self.nn_frac_config["model"]["model_path"])
 
-        scaler = self.nn_frac_config["model"]["scaler"]
-        
-        scaler_path = ""
-
-        if scaler == "standard":
-            scaler_path = os.path.join(path_prefix, self.nn_frac_config["model"]["scaler_path"])
-            scaler_path = os.path.join(scaler_path, str(self.era), "StandardScaler.{0}.pkl".format(self.channel))
-            logger.info("Loading scaler from {0}".format(scaler_path))
-
         model_path = os.path.join(model_path, str(self.era), "{0}.{1}".format(self.channel, "keras"))
         logger.info("Loading model from {0}".format(model_path))
         
-        settings = Settings(self.channel, self.era, scaler)
+        settings = Settings(self.channel, self.era)
         pred = PredictionWrapper(settings)
 
-        pred.setup(model_path, scaler_path)
+        pred.setup(model_path)
         self.prediction = pred
 
 

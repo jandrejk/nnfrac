@@ -9,6 +9,5 @@ class Settings:
         result = ""
         result += "[Settings: " + "\n"
         result += "Channel: " + self.channel + "\n"
-        result += "Era: " + self.era + "\n"
-        result += "Scaler: " + self.scaler + "]" + "\n"
+        result += "Era: " + self.era + "]" + "\n"
         return result
