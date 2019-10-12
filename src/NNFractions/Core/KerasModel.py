@@ -38,8 +38,6 @@ class KerasObject():
 
         if target_names: self.target_names = target_names
 
-
-
     def load(self, filename):
         with open(filename + ".dict", 'rb') as FSO:
             tmp_dict = json.load(FSO)
@@ -50,8 +48,8 @@ class KerasObject():
 
         self.models = []
         for modelpath in tmp_dict["models"]:
-            logger.debug("filename is " + filename)
-            logger.debug("path in dict is " + modelpath)
+            logger.debug("Filename is " + filename)
+            logger.debug("Path in dict is " + modelpath)
             modelname = os.path.basename(modelpath)
 
             dirpath = os.path.dirname(filename)
@@ -77,7 +75,6 @@ class KerasObject():
 
         self.models = tmp_models
 
-
     def train(self, samples):
 
         if type(samples) is list:
@@ -97,9 +94,7 @@ class KerasObject():
 
         print "Finished training!"
 
-
     def trainSingle(self, train, test):
-
 
         # writing targets in keras readable shape
         best = str(int(time.time()))
@@ -159,22 +154,6 @@ class KerasObject():
 
         samples[0].drop(samples[0].index, inplace = True)
         samples[1].drop(samples[1].index, inplace = True)
-
-        return predictions
-
-    def predictAndPreserve(self, in_samples, where=""):
-
-        samples = copy.deepcopy(in_samples)
-        predictions = []
-        if type(samples) is list:
-            samples = deque(samples)
-
-        for i in xrange(len(samples)):
-            if len(samples[0]) > 0:
-                predictions.append( self.testSingle( samples[0], i))
-            else:
-                print "Empty fold in prediction: skipping..."
-            samples.rotate(-1)
 
         return predictions
 

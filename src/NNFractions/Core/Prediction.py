@@ -55,7 +55,6 @@ class Prediction:
     def get_prediction_folds_for_folds(self, folds, keep=[]):
         unscaled = copy.deepcopy(folds)
         prediction = self.model.predict(unscaled)
-        logger.debug("got prediction from model")
         unscaled[0].drop(unscaled[0].index, inplace=True)
         unscaled[1].drop(unscaled[1].index, inplace=True)
             

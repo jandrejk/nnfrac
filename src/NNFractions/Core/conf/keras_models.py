@@ -193,6 +193,23 @@ def smhtt_dropout_selu(num_inputs, num_outputs):
     model.compile(loss="categorical_crossentropy", optimizer=Adam(lr=1e-4), metrics=['categorical_accuracy'])
     return model
 
+def smhtt_alpha_dropout_selu_lecun(num_inputs, num_outputs):
+    model = Sequential()
+
+    for i, nodes in enumerate([200] * 2):
+        if i == 0:
+            model.add(Dense(nodes, kernel_initializer="lecun_normal", kernel_regularizer=l2(1e-5), input_dim=num_inputs))
+        else:
+            model.add(Dense(nodes, kernel_initializer="lecun_normal", kernel_regularizer=l2(1e-5)))
+        model.add(Activation("selu"))
+        model.add(AlphaDropout(0.1))
+
+    model.add(Dense(num_outputs, kernel_initializer="lecun_normal", kernel_regularizer=l2(1e-5)))
+    model.add(Activation("softmax"))
+
+    model.compile(loss="categorical_crossentropy", optimizer=Adam(lr=1e-4), metrics=['categorical_accuracy'])
+    return model
+
 def smhtt_em(num_inputs, num_outputs):
     model = Sequential()
     model.add(
