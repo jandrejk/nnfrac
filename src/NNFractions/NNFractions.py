@@ -6,7 +6,7 @@ import os
 import json
 
 from Core.Settings import Settings
-from Core.PredictionWrapper import PredictionWrapper
+from Core.Prediction import Prediction
 
 def main():
     print "Main() function currently not implemented -- to be used as part of another module (by calling the functions or creating instances of the classes)."
@@ -58,10 +58,7 @@ class NNFractions():
         logger.info("Loading model from {0}".format(model_path))
         
         settings = Settings(self.channel, self.era)
-        pred = PredictionWrapper(settings)
-
-        pred.setup(model_path)
-        self.prediction = pred
+        self.prediction = Prediction(settings, model_path)
 
 
 if __name__ == '__main__':

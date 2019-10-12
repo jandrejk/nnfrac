@@ -3,30 +3,21 @@ import copy
 import cPickle
 from pandas import DataFrame, concat
 
-from CorePrediction import CorePrediction
-
 import logging
 logging.basicConfig()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-class PredictionWrapper:
+class Prediction:
 
-    def __init__(self, settings):
+    def __init__(self, settings, model_path):
         self.settings = settings
-        self.model = 0
-
-    def setup(self, model_path):            
+        
         import keras
         logger.info("Using keras" + keras.__version__)
         from KerasModel import KerasObject as modelObject
-
-        self.model = modelObject(filename=model_path)
-
-    @staticmethod
-    def splitInFolds(data_frame):
-        return CorePrediction.splitInFolds(data_frame)
+        self.model = modelObject(filename=model_path)    
 
     def get_prediction_data_frame(self, data_frame, keep=[]):
         logger.debug("Predicting...")
@@ -37,35 +28,26 @@ class PredictionWrapper:
             prediction_fold.drop(prediction_fold.index, inplace=True)
         return prediction
 
-#     def get_prediction_folds(self, data_frame, keep=[]):
-#         logger.debug("Entering get_prediction_folds...")
-# #         prediction_handler = CorePrediction(self.settings)
-# #         prediction_handler.setup(self.settings, self.model)
-# 
-#         logger.debug("Predicting...")
-# #         prediction = prediction_handler.get_prediction_folds_for_data_frame(data_frame, keep=keep)
-#         prediction = self.get_prediction_folds_for_data_frame(data_frame, keep=keep)
-#         return prediction    
-
-    def recombine_into_data_frame(self, pred):
-        logger.debug( "in combineFoldsIntoDataFrame...")
+    def recombine_into_data_frame(self, folds):
+        logger.debug( "Entering recombine_into_data_frame...")
         all_zero = True
-        for prediction_fold in pred:
+        for prediction_fold in folds:
             if len(prediction_fold) > 0:
                 all_zero = False
         if not all_zero:
-            return concat(pred)
+            return concat(folds)
         else:
-            return DataFrame()
-        
+            return DataFrame()        
         
         #### core ####
         
     def get_prediction_folds_for_data_frame(self, data_frame, keep=[]):
-        self.modifyDFForPrediction(data_frame)
-
+        self.modify_for_prediction(data_frame)
         # this is a copy
-        folds = self.splitInFolds(data_frame)
+        folds = self.split_in_folds(data_frame)
+        
+        #TODO: drop original data_frame
+        data_frame.drop(data_frame.index, inplace=True)
 
         prediction = self.get_prediction_folds_for_folds(folds, keep=keep)
         return prediction
@@ -104,12 +86,12 @@ class PredictionWrapper:
         return prediction
     
     @staticmethod
-    def splitInFolds(data_frame):
+    def split_in_folds(data_frame):
         folds = [data_frame.query("abs(evt % 2) != 0 ").reset_index(drop=True),
                  data_frame.query("abs(evt % 2) == 0 ").reset_index(drop=True)]
         return folds
 
-    def modifyDFForPrediction(self, DF):
+    def modify_for_prediction(self, DF):
         DF["evt"] = DF["evt"].astype('int64')
 
         if self.settings.era == "2016":
