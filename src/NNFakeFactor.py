@@ -19,10 +19,10 @@ def main():
     channel = "mt"
     
     filename = "{0}_test.root".format(channel)
-    dirpath = "../testdata"
+    dirpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../testdata")
     path = os.path.join(dirpath, filename)
     
-    Cut.cutfile = "./cuts_2017.json"
+    Cut.cutfile = os.path.join(os.path.dirname(os.path.realpath(__file__)), "cuts_2017.json")
     cut = Cut(cutstring="-OS- && -ISO- && -VETO- && -MT- && -TRIG-", channel=channel)
     
     ff = NNFakeFactor(channel, "2017")
@@ -30,8 +30,8 @@ def main():
 
 
 class NNFakeFactor:    
-    nn_frac_config_file = "{0}/NNFractions/default_nn_frac_config.json".format("/".join(os.path.realpath(__file__).split("/")[:-1]))
-    
+    # TODO: make this configurable
+    nn_frac_config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), "NNFractions/default_nn_frac_config.json")    
 
     nn_fractions = None
 
@@ -55,13 +55,16 @@ class NNFakeFactor:
     
         pred_concat = self.read_fractions(cut, path)
         
+        logger.debug("length of data_content: " + str(len(data_content)))
+        logger.debug("length of prediction: " + str(len(pred_concat)))
+        
         logger.info("merging data frames...")
     
         if len(data_content) > 0 and len(pred_concat) > 0:
             data_content = data_content.merge(pred_concat)
 
-            # logger.debug("data_content after merge: ")
-            # logger.debug(data_content)
+            logger.debug("data_content after merge: ")
+            logger.debug(data_content)
         
         pred_concat.drop(pred_concat.index, inplace=True)
 
@@ -77,19 +80,16 @@ class NNFakeFactor:
         logger.info("reading for prediction from " + path)
         df = rp.read_root(paths=path, where=cut.get(), columns=branches)
 
-        # logger.debug("------------------------------------------------------")
-        # logger.debug("prediction data frame before prediction columns are added:")
-        # logger.debug(df)
+        logger.debug("------------------------------------------------------")
+        logger.debug("prediction data frame before prediction columns are added:")
+        logger.debug(df)
 
         logger.info("getting prediction...")
         pred_concat = self.nn_fractions.get_prediction(df)
 
-#         logger.debug("------------------------------------------------------")
-#         logger.debug("prediction data_frame after prediction:")
-#         logger.debug(pred_concat)
-#   
-#         logger.debug("length of data_content: " + str(len(data_content)))
-#         logger.debug("length of prediction: " + str(len(pred_concat)))
+        logger.debug("------------------------------------------------------")
+        logger.debug("prediction data_frame after prediction:")
+        logger.debug(pred_concat)
 
         df.drop(df.index, inplace=True)
 
@@ -97,7 +97,6 @@ class NNFakeFactor:
 
     def read_fakefactor_data(self, cut, path, weight):
         logger.info("In read_fakefactor_data...")
-#             self.prediction_helper = NNFractionProvider(self.channel, self.era, self.nn_frac_config_file)
 
         if self.channel != "tt":
 
@@ -123,9 +122,9 @@ class NNFakeFactor:
 
         data_content.eval("mc_weight = {0}".format(weight.use), inplace=True)  
         
-        #         logger.debug("------------------------------------------------------")
-        #         logger.debug("data_content that prediction columns will be added to:")
-        #         logger.debug(data_content)
+        logger.debug("------------------------------------------------------")
+        logger.debug("data_content that prediction columns will be added to:")
+        logger.debug(data_content)
         return data_content
             
         
