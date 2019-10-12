@@ -41,7 +41,7 @@ class NNFractions():
         return list(set(branches))
 
     def get_prediction(self, data_frame):
-        logger.debug( "in getPredictionDataFrame...")
+        logger.debug( "Entering get_prediction...")
         return self.prediction.get_prediction_data_frame(data_frame, "evt")
 
     def _load(self): 
