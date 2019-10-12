@@ -1,0 +1,59 @@
+{
+	"-SS-":"q_1 * q_2 > 0",
+	"-OS-":"q_1 * q_2 < 0",
+	"-VETO-":{
+		"mt":"((extramuon_veto < 0.5) && (dilepton_veto<0.5) && (againstMuonTight3_2>0.5) && (againstElectronVLooseMVA6_2>0.5))",
+		"et":"((extraelec_veto < 0.5) && (dilepton_veto<0.5) && (againstMuonLoose3_2>0.5) && (againstElectronTightMVA6_2>0.5))",
+		"tt":"((extramuon_veto < 0.5) && (extraelec_veto < 0.5) && (dilepton_veto<0.5) && (againstMuonLoose3_1>0.5) && (againstElectronVLooseMVA6_1>0.5) && (againstMuonLoose3_2>0.5) && (againstElectronVLooseMVA6_2>0.5))"
+	},
+	"-MT-":{
+		"mt":"mt_1 < 50",
+		"et":"mt_1 < 50",
+		"tt":"mt_1 >= 0"
+	},
+	"-HIGHMT-":{
+		"mt":"mt_1 > 80",
+		"et":"mt_1 > 80",
+		"tt":"mt_1 >= 0"
+	},
+	"-ISO-":{
+		"mt":"byTightIsolationMVArun2v1DBoldDMwLT_2  && iso_1 < 0.15",
+		"et":"byTightIsolationMVArun2v1DBoldDMwLT_2  && iso_1 < 0.1",
+		"tt":"byTightIsolationMVArun2v1DBoldDMwLT_1  && byTightIsolationMVArun2v1DBoldDMwLT_2"
+	},
+	"-ANTIISO-":{
+		"mt":"(byVLooseIsolationMVArun2v1DBoldDMwLT_2 && !byTightIsolationMVArun2v1DBoldDMwLT_2  && iso_1 < 0.15)",
+		"et":"(byVLooseIsolationMVArun2v1DBoldDMwLT_2 && !byTightIsolationMVArun2v1DBoldDMwLT_2 && iso_1 < 0.1)",
+		"tt":"( (byTightIsolationMVArun2v1DBoldDMwLT_2 > 0.5 && byVLooseIsolationMVArun2v1DBoldDMwLT_1 > 0.5 && byTightIsolationMVArun2v1DBoldDMwLT_1 < 0.5) || (byTightIsolationMVArun2v1DBoldDMwLT_1 > 0.5 && byVLooseIsolationMVArun2v1DBoldDMwLT_2 > 0.5 && byTightIsolationMVArun2v1DBoldDMwLT_2 < 0.5) )"
+	},
+	"-ANTIISO1-":{
+		"mt":"(byVLooseIsolationMVArun2v1DBoldDMwLT_2 > 0.5 && !byTightIsolationMVArun2v1DBoldDMwLT_2 > 0.5  && iso_1 < 0.15)",
+		"et":"(byVLooseIsolationMVArun2v1DBoldDMwLT_2 > 0.5 && !byTightIsolationMVArun2v1DBoldDMwLT_2 > 0.5 && iso_1 < 0.1)",
+		"tt":"(byTightIsolationMVArun2v1DBoldDMwLT_2 > 0.5 && byVLooseIsolationMVArun2v1DBoldDMwLT_1 > 0.5 && byTightIsolationMVArun2v1DBoldDMwLT_1 < 0.5)"
+	},
+	"-ANTIISO2-":{
+		"mt":"(byVLooseIsolationMVArun2v1DBoldDMwLT_2 && !byTightIsolationMVArun2v1DBoldDMwLT_2  && iso_1 < 0.15)",
+		"et":"(byVLooseIsolationMVArun2v1DBoldDMwLT_2 && !byTightIsolationMVArun2v1DBoldDMwLT_2 && iso_1 < 0.1)",
+		"tt":"(byTightIsolationMVArun2v1DBoldDMwLT_1 > 0.5 && byVLooseIsolationMVArun2v1DBoldDMwLT_2 > 0.5 && byTightIsolationMVArun2v1DBoldDMwLT_2 < 0.5)"
+	},
+	"-TRIG-":{
+		"mt":"( (trg_singlemuon && pt_1 > 23 && pt_2 > 30) || (trg_mutaucross && pt_1 <= 23 && pt_2 > 30) )",
+		"et":"trg_singleelectron",
+		"tt":"trg_doubletau"
+	},
+	"-GENLEP-":{
+		"mt":"(gen_match_2 < 5)",
+		"et":"(gen_match_2 < 5)",
+		"tt":"( !( (gen_match_1 == 5) && (gen_match_2 == 5) ) && (gen_match_1 < 6) && (gen_match_2 < 6)  )"
+	},
+	"-GENHAD-":{
+		"mt":"(gen_match_2 == 5)",
+		"et":"(gen_match_2 == 5)",
+		"tt":"( ( gen_match_1 == 5) && (gen_match_2 == 5 ) )"
+	},
+	"-GENJET-":{
+		"mt":"(gen_match_2 == 6)",
+		"et":"(gen_match_2 == 6)",
+		"tt":"( ( gen_match_1 == 6) || (gen_match_2 == 6 ) )" 
+	}
+}
