@@ -1,10 +1,10 @@
 {
-    "prediction_mode": "otf_default",
     "model":
     {
-        "path_prefix": "./NNFractions/model",
-        "model_path": "default",
-        "scaler_path": "default",
+    	"path_type": "rel",
+        "path_prefix": "-",
+        "model_path": "model/default",
+        "scaler_path": "model/default",
         "scaler": "none"
     }
 }

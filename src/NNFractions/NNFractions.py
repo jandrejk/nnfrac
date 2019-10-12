@@ -36,8 +36,15 @@ class NNFractions():
         self.setup_prediction()
 
     def setup_prediction(self): 
+        path_type = self.nn_frac_config["model"]["path_type"]
         path_prefix = self.nn_frac_config["model"]["path_prefix"]
-        model_path = os.path.join(path_prefix, self.nn_frac_config["model"]["model_path"])        
+        
+        if (path_type == "abs"):
+            model_path = os.path.join(path_prefix, self.nn_frac_config["model"]["model_path"])      
+        else:
+#             realpath = "/".join(os.path.realpath(__file__).split("/")[:-1])
+            realpath = os.path.dirname(os.path.realpath(__file__))
+            model_path = os.path.join(realpath, self.nn_frac_config["model"]["model_path"])
 
         scaler = self.nn_frac_config["model"]["scaler"]
         
