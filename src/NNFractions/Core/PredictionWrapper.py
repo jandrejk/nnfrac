@@ -28,15 +28,10 @@ class PredictionWrapper:
                 logger.critical("Fatal: Scaler file not found at {0}. Train model using -t first.".format(
                     scaler_path))
                 return
-
-        if self.settings.ml_type == "xgb":
-            logger.info("Using xgb...")
-            from XGBModel import XGBObject as modelObject
-
-        if self.settings.ml_type == "keras":
-            import keras
-            logger.info("Using keras" + keras.__version__)
-            from KerasModel import KerasObject as modelObject
+            
+        import keras
+        logger.info("Using keras" + keras.__version__)
+        from KerasModel import KerasObject as modelObject
 
         self.model = modelObject(filename=model_path)
 

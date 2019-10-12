@@ -72,7 +72,7 @@ class NNFakeFactor:
         logger.info("Entering read_fractions...")
         self.nn_fractions = NNFractions(self.channel, self.era, self.nn_frac_config_file)
         
-        branches = self.nn_fractions.getBranchesForPrediction()
+        branches = self.nn_fractions.get_required_branch_names()
     
         logger.info("reading for prediction from " + path)
         df = rp.read_root(paths=path, where=cut.get(), columns=branches)
@@ -82,7 +82,7 @@ class NNFakeFactor:
         # logger.debug(df)
 
         logger.info("getting prediction...")
-        pred_concat = self.nn_fractions.getPredictionDataFrame(df)
+        pred_concat = self.nn_fractions.get_prediction(df)
 
 #         logger.debug("------------------------------------------------------")
 #         logger.debug("prediction data_frame after prediction:")

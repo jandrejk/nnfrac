@@ -9,20 +9,19 @@ from Core.Settings import Settings
 from Core.PredictionWrapper import PredictionWrapper
 
 def main():
-    pass
-
+    print "Main() function currently not implemented -- to be used as part of another module (by calling the functions or creating instances of the classes)."
+    
 
 class NNFractions():
-    config_path = "{0}/default_nn_frac_config.json".format(
-        "/".join(os.path.realpath(__file__).split("/")[:-1]))
+    config_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "default_nn_frac_config.json")
 
     def __init__(self, channel, era, config=""):
 
         if config:
             self.config_path = config
             
-        logger.info("Loading nn frac config from {0}".format(self.config_path))
-        logger.debug("Called constructor of PredictionHelper")
+        logger.info("Loading config from {0}".format(self.config_path))
+        
         with open(self.config_path,"r") as FSO:
             self.nn_frac_config = json.load(FSO)
 
@@ -30,12 +29,22 @@ class NNFractions():
         self.era = era
         self.prediction = None
 
-        logger.debug("Loaded nn_frac_config")
+        logger.debug("Successfully loaded config")
         logger.debug(str(self.nn_frac_config))
 
-        self.setup_prediction()
+        self._load()
 
-    def setup_prediction(self): 
+    def get_required_branch_names(self):
+        variables = self.prediction.model.variables
+        logger.debug(variables)
+        branches = ["evt"] + variables + ["jdeta", "mjj", "dijetpt", "jpt_1", "jpt_2"]
+        return list(set(branches))
+
+    def get_prediction(self, data_frame):
+        logger.debug( "in getPredictionDataFrame...")
+        return self.prediction.get_prediction_data_frame(data_frame, "evt")
+
+    def _load(self): 
         path_type = self.nn_frac_config["model"]["path_type"]
         path_prefix = self.nn_frac_config["model"]["path_prefix"]
         
@@ -58,21 +67,11 @@ class NNFractions():
         model_path = os.path.join(model_path, str(self.era), "{0}.{1}".format(self.channel, "keras"))
         logger.info("Loading model from {0}".format(model_path))
         
-        settings = Settings(self.channel, self.era, "keras", scaler)
+        settings = Settings(self.channel, self.era, scaler)
         pred = PredictionWrapper(settings)
 
         pred.setup(model_path, scaler_path)
         self.prediction = pred
-
-    def getBranchesForPrediction(self):
-        variables = self.prediction.model.variables
-        logger.debug(variables)
-        branches = ["evt"] + variables + ["jdeta", "mjj", "dijetpt", "jpt_1", "jpt_2"]
-        return list(set(branches))
-
-    def getPredictionDataFrame(self, data_frame):
-        logger.debug( "in getPredictionForDataFrame...")
-        return self.prediction.get_prediction_data_frame(data_frame, "evt")
 
 
 if __name__ == '__main__':
