@@ -51,7 +51,6 @@ class NNFractions():
         if (path_type == "abs"):
             model_path = os.path.join(path_prefix, self.nn_frac_config["model"]["model_path"])      
         else:
-#             realpath = "/".join(os.path.realpath(__file__).split("/")[:-1])
             realpath = os.path.dirname(os.path.realpath(__file__))
             model_path = os.path.join(realpath, self.nn_frac_config["model"]["model_path"])
 

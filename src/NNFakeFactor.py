@@ -49,6 +49,8 @@ class NNFakeFactor:
         
     def run(self, cut, path, weight):
         data = self.read_data(cut, path, weight)
+        outpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), "output.root")
+        data.to_root(outpath, key="TauCheck", mode="w")
         
     def read_data(self, cut, path, weight):
         data_content = self.read_fakefactor_data(cut, path, weight)

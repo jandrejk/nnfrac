@@ -94,21 +94,6 @@ class CorePrediction():
 
     def modifyDFForPrediction(self, DF):
         DF["evt"] = DF["evt"].astype('int64')
-        # DF.eval("event_weight = " + sample_info["event_weight"], inplace=True)
-        # DF["target"] = sample_info["target"]
-        # DF["train_weight"] = DF["event_weight"].abs() * self.config["class_weight"].get(sample_info["target_name"], 1.0 )
-
-        # class_weight = sample_info["class_weight"]
-
-        # DF["train_weight"] = DF["event_weight"].abs() * class_weight
-        # DF["train_weight"] = DF["event_weight"].abs()
-        # DF.replace(-999., -10, inplace=True)
-
-        # for new, old in sample_info["rename"]:
-        #     if new in DF.columns.values.tolist() and old in DF.columns.values.tolist():
-        #         DF[old] = DF[new]
-            # else:
-            #     print "cant rename {0} to {1}".format(old, new)
 
         if self.settings.era == "2016":
             DF.replace({"jdeta": -10.}, -1., inplace=True)
