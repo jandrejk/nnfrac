@@ -1,0 +1,31 @@
+{
+    "output":
+    {
+        "output_root_dir": "/afs/hephy.at/work/m/msajatovic/CMSSW_9_4_0/src/dev/nnFractions/output"
+    },
+    "samples":
+    {
+        "sample_config": "conf/configs/vars6/frac_config_{0}_{1}.json"
+    },
+    "model":
+    {
+        "model_output_dir": "models/4cat_vars6"
+    },
+    "prediction":
+    {
+        "model_input_dir": "models/4cat_vars6",
+        "sample_input_dir": "ext_input/predictions/predictions_2017",
+        "prediction_output_dir": "predictions/4cat_vars6"
+    },
+    "fracplots":
+    {
+        "prediction_input_dir": "predictions/4cat_vars6",
+        "fracplot_output_dir": "fracplots/4cat_vars6"
+    },
+    "datacard":
+    {
+        "datacard_dir": "",
+        "datacard_conf_dir": "",
+        "datacard_plot_dir": ""
+    }
+}
