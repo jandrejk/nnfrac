@@ -6,7 +6,7 @@ from Tools.CutObject.CutObject import Cut
 
 def main():
     
-    channel = "et"
+    channel = "mt"
     
     filename = "{0}-NOMINAL_ntuple_Data.root".format(channel)
     dirpath = "/eos/user/m/msajatov/data/ntuples_scp/v10"
@@ -17,21 +17,29 @@ def main():
     
     
     branches = [
-            "pt_1",
-            "jpt_2",
-            "bpt_1",
-            "bpt_2",
-            "njets",
-            "nbtag",
-            "m_sv",
-            "mt_1",
-            "mt_2",
-            "pt_tt",
-            "mjj",
-            "jdeta",
-            "m_vis",
-            "dijetpt"
-            ] + [
+"pt_1",
+"pt_2",
+"jpt_1",
+"jpt_2",
+"bpt_1",
+"bpt_2",
+"njets",
+"nbtag",
+"m_sv",
+"mt_1",
+"mt_2",
+"pt_vis",
+"pt_tt",
+"mjj",
+"jdeta",
+"m_vis",
+"dijetpt",
+"met",
+"eta_1",
+"eta_2",
+"iso_1",
+"iso_2"
+] + [
         "evt",
         "by*IsolationMVArun2017v2DBoldDMwLT2017*",       
         "pt_1",
@@ -64,7 +72,7 @@ def main():
     # for tt a chunksize of 5000 results in 37 events in the SR
     # for mt a chunksize of 2000 results in 36 events in the SR
     # for et a chunksize of 1000 results in 34 events in the SR
-    df_iter = rp.read_root(paths=path, where=cut.getForDF(), columns=branches, chunksize=1000)
+    df_iter = rp.read_root(paths=path, where=cut.getForDF(), columns=branches, chunksize=2000)
     
     print df_iter
 

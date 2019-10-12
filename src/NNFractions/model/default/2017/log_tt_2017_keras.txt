@@ -1,0 +1,139 @@
+Training for [Settings: 
+ML Type: keras
+Channel: tt
+Era: 2017
+Scaler: none]
+
+Config used is conf/configs/vars6_antiiso/frac_config_tt_2017.json
+Model output dir is /afs/hephy.at/work/m/msajatovic/CMSSW_9_4_0/src/dev/nnFractions/output/models/4cat_vars6_antiiso/2017
+
+
+Input variable names for NN:
+pt_1
+pt_2
+jpt_1
+jpt_2
+bpt_1
+bpt_2
+njets
+nbtag
+mt_1
+mt_2
+pt_vis
+pt_tt
+mjj
+jdeta
+m_vis
+dijetpt
+met
+eta_1
+eta_2
+iso_1
+iso_2
+
+
+Target names used for training:
+{'default': ['none', u'real', u'tt', u'w', u'qcd']}
+
+
+Samples: 
+
+[SampleSet: 
+Name: ZL_anti
+Source: tt-NOMINAL_ntuple_DY.root
+Source Path: tt-NOMINAL_ntuple_DY.root
+Cut: q_1 * q_2 < 0 && ( (byTightIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_1< 0.5) | (byTightIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5) ) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_1>0.5) & (againstElectronVLooseMVA6_1>0.5) & (againstMuonLoose3_2>0.5) & (againstElectronVLooseMVA6_2>0.5) ) && (mt_1 >= 0 & pt_tt > 50) && ( trg_doubletau_40_tightiso | trg_doubletau_40_mediso_tightid | trg_doubletau_35_tightiso_tightid ) &&  ((( ( gen_match_1 == 6) | (gen_match_2 == 6 ) ) || ((gen_match_1 == 5 & gen_match_2 == 5 ))) < 0.5)
+Target: [TargetCategory: real;3;9.9]
+Event Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*zPtReweightWeight]
+Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*zPtReweightWeight*41.529]
+
+[SampleSet: 
+Name: TTL_anti
+Source: tt-NOMINAL_ntuple_TT.root
+Source Path: tt-NOMINAL_ntuple_TT.root
+Cut: q_1 * q_2 < 0 && ( (byTightIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_1< 0.5) | (byTightIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5) ) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_1>0.5) & (againstElectronVLooseMVA6_1>0.5) & (againstMuonLoose3_2>0.5) & (againstElectronVLooseMVA6_2>0.5) ) && (mt_1 >= 0 & pt_tt > 50) && ( trg_doubletau_40_tightiso | trg_doubletau_40_mediso_tightid | trg_doubletau_35_tightiso_tightid ) && ((( ( gen_match_1 == 6) | (gen_match_2 == 6 ) ) || ((gen_match_1 == 5 & gen_match_2 == 5 ))) < 0.5)
+Target: [TargetCategory: real;3;9.9]
+Event Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*topPtReweightWeightRun1]
+Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*topPtReweightWeightRun1*41.529]
+
+[SampleSet: 
+Name: VVT_anti
+Source: tt-NOMINAL_ntuple_VV.root
+Source Path: tt-NOMINAL_ntuple_VV.root
+Cut: q_1 * q_2 < 0 && ( (byTightIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_1< 0.5) | (byTightIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5) ) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_1>0.5) & (againstElectronVLooseMVA6_1>0.5) & (againstMuonLoose3_2>0.5) & (againstElectronVLooseMVA6_2>0.5) ) && (mt_1 >= 0 & pt_tt > 50) && ( trg_doubletau_40_tightiso | trg_doubletau_40_mediso_tightid | trg_doubletau_35_tightiso_tightid ) && ((gen_match_1 == 5 & gen_match_2 == 5 )) 
+Target: [TargetCategory: real;3;9.9]
+Event Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )]
+Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*41.529]
+
+[SampleSet: 
+Name: TTT_anti
+Source: tt-NOMINAL_ntuple_TT.root
+Source Path: tt-NOMINAL_ntuple_TT.root
+Cut: q_1 * q_2 < 0 && ( (byTightIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_1< 0.5) | (byTightIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5) ) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_1>0.5) & (againstElectronVLooseMVA6_1>0.5) & (againstMuonLoose3_2>0.5) & (againstElectronVLooseMVA6_2>0.5) ) && (mt_1 >= 0 & pt_tt > 50) && ( trg_doubletau_40_tightiso | trg_doubletau_40_mediso_tightid | trg_doubletau_35_tightiso_tightid ) && ((gen_match_1 == 5 & gen_match_2 == 5 )) 
+Target: [TargetCategory: real;3;9.9]
+Event Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*topPtReweightWeightRun1]
+Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*topPtReweightWeightRun1*41.529]
+
+[SampleSet: 
+Name: QCD_estimate
+Source: tt-NOMINAL_ntuple_Data.root
+Source Path: tt-NOMINAL_ntuple_Data.root
+Cut: q_1 * q_2 < 0 && ( (byTightIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_1< 0.5) | (byTightIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5) ) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_1>0.5) & (againstElectronVLooseMVA6_1>0.5) & (againstMuonLoose3_2>0.5) & (againstElectronVLooseMVA6_2>0.5) ) && (mt_1 >= 0 & pt_tt > 50) && ( trg_doubletau_40_tightiso | trg_doubletau_40_mediso_tightid | trg_doubletau_35_tightiso_tightid )
+Target: [TargetCategory: qcd;2;1.2]
+Event Weight: 0.890770814183]
+Weight: 0.890770814183]
+
+[SampleSet: 
+Name: VVJ_anti
+Source: tt-NOMINAL_ntuple_VV.root
+Source Path: tt-NOMINAL_ntuple_VV.root
+Cut: q_1 * q_2 < 0 && ( (byTightIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_1< 0.5) | (byTightIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5) ) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_1>0.5) & (againstElectronVLooseMVA6_1>0.5) & (againstMuonLoose3_2>0.5) & (againstElectronVLooseMVA6_2>0.5) ) && (mt_1 >= 0 & pt_tt > 50) && ( trg_doubletau_40_tightiso | trg_doubletau_40_mediso_tightid | trg_doubletau_35_tightiso_tightid ) && ( ( gen_match_1 == 6) | (gen_match_2 == 6 ) )
+Target: [TargetCategory: w;1;15.7]
+Event Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )]
+Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*41.529]
+
+[SampleSet: 
+Name: ZTT_anti
+Source: tt-NOMINAL_ntuple_DY.root
+Source Path: tt-NOMINAL_ntuple_DY.root
+Cut: q_1 * q_2 < 0 && ( (byTightIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_1< 0.5) | (byTightIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5) ) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_1>0.5) & (againstElectronVLooseMVA6_1>0.5) & (againstMuonLoose3_2>0.5) & (againstElectronVLooseMVA6_2>0.5) ) && (mt_1 >= 0 & pt_tt > 50) && ( trg_doubletau_40_tightiso | trg_doubletau_40_mediso_tightid | trg_doubletau_35_tightiso_tightid ) && ((gen_match_1 == 5 & gen_match_2 == 5 ))
+Target: [TargetCategory: real;3;9.9]
+Event Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*zPtReweightWeight]
+Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*zPtReweightWeight*41.529]
+
+[SampleSet: 
+Name: W_anti
+Source: tt-NOMINAL_ntuple_WJets.root
+Source Path: tt-NOMINAL_ntuple_WJets.root
+Cut: q_1 * q_2 < 0 && ( (byTightIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_1< 0.5) | (byTightIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5) ) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_1>0.5) & (againstElectronVLooseMVA6_1>0.5) & (againstMuonLoose3_2>0.5) & (againstElectronVLooseMVA6_2>0.5) ) && (mt_1 >= 0 & pt_tt > 50) && ( trg_doubletau_40_tightiso | trg_doubletau_40_mediso_tightid | trg_doubletau_35_tightiso_tightid )
+Target: [TargetCategory: w;1;15.7]
+Event Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )]
+Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*41.529]
+
+[SampleSet: 
+Name: ZJ_anti
+Source: tt-NOMINAL_ntuple_DY.root
+Source Path: tt-NOMINAL_ntuple_DY.root
+Cut: q_1 * q_2 < 0 && ( (byTightIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_1< 0.5) | (byTightIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5) ) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_1>0.5) & (againstElectronVLooseMVA6_1>0.5) & (againstMuonLoose3_2>0.5) & (againstElectronVLooseMVA6_2>0.5) ) && (mt_1 >= 0 & pt_tt > 50) && ( trg_doubletau_40_tightiso | trg_doubletau_40_mediso_tightid | trg_doubletau_35_tightiso_tightid ) && ( ( gen_match_1 == 6) | (gen_match_2 == 6 ) )
+Target: [TargetCategory: w;1;15.7]
+Event Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*zPtReweightWeight]
+Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*zPtReweightWeight*41.529]
+
+[SampleSet: 
+Name: TTJ_anti
+Source: tt-NOMINAL_ntuple_TT.root
+Source Path: tt-NOMINAL_ntuple_TT.root
+Cut: q_1 * q_2 < 0 && ( (byTightIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_1< 0.5) | (byTightIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5) ) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_1>0.5) & (againstElectronVLooseMVA6_1>0.5) & (againstMuonLoose3_2>0.5) & (againstElectronVLooseMVA6_2>0.5) ) && (mt_1 >= 0 & pt_tt > 50) && ( trg_doubletau_40_tightiso | trg_doubletau_40_mediso_tightid | trg_doubletau_35_tightiso_tightid ) && ( ( gen_match_1 == 6) | (gen_match_2 == 6 ) ) 
+Target: [TargetCategory: tt;0;61.0]
+Event Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*topPtReweightWeightRun1]
+Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*topPtReweightWeightRun1*41.529]
+
+[SampleSet: 
+Name: VVL_anti
+Source: tt-NOMINAL_ntuple_VV.root
+Source Path: tt-NOMINAL_ntuple_VV.root
+Cut: q_1 * q_2 < 0 && ( (byTightIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_1< 0.5) | (byTightIsolationMVArun2017v2DBoldDMwLT2017_1 > 0.5 & byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5) ) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_1>0.5) & (againstElectronVLooseMVA6_1>0.5) & (againstMuonLoose3_2>0.5) & (againstElectronVLooseMVA6_2>0.5) ) && (mt_1 >= 0 & pt_tt > 50) && ( trg_doubletau_40_tightiso | trg_doubletau_40_mediso_tightid | trg_doubletau_35_tightiso_tightid ) && ((( ( gen_match_1 == 6) | (gen_match_2 == 6 ) ) || ((gen_match_1 == 5 & gen_match_2 == 5 ))) < 0.5)
+Target: [TargetCategory: real;3;9.9]
+Event Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )]
+Weight: weight*sf_DoubleTauTight*( 0.89*(gen_match_1 == 5) + 1.*(gen_match_1 !=5) )*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*41.529]
+

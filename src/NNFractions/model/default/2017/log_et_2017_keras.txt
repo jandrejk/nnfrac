@@ -1,0 +1,139 @@
+Training for [Settings: 
+ML Type: keras
+Channel: et
+Era: 2017
+Scaler: none]
+
+Config used is conf/configs/vars6/frac_config_et_2017.json
+Model output dir is /afs/hephy.at/work/m/msajatovic/CMSSW_9_4_0/src/dev/nnFractions/output/models/4cat_vars6/2017
+
+
+Input variable names for NN:
+pt_1
+pt_2
+jpt_1
+jpt_2
+bpt_1
+bpt_2
+njets
+nbtag
+mt_1
+mt_2
+pt_vis
+pt_tt
+mjj
+jdeta
+m_vis
+dijetpt
+met
+eta_1
+eta_2
+iso_1
+iso_2
+
+
+Target names used for training:
+{'default': ['none', u'real', u'tt', u'w', u'qcd']}
+
+
+Samples: 
+
+[SampleSet: 
+Name: ZL_anti
+Source: et-NOMINAL_ntuple_DY.root
+Source Path: et-NOMINAL_ntuple_DY.root
+Cut: q_1 * q_2 < 0 && (byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5 & iso_1 < 0.15) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_2>0.5) & (againstElectronTightMVA6_2>0.5) ) && mt_1 < 50 && ( ( (trg_crossele_ele24tau30 && pt_1 < 28) | trg_singleelectron_27 | trg_singleelectron_32 | trg_singleelectron_35 ) & pt_2 > 30 ) &&  (((gen_match_2 == 6) || ((gen_match_1 == 3 & gen_match_2 == 5 ))) < 0.5)
+Target: [TargetCategory: real;3;7.2]
+Event Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*zPtReweightWeight*sf_SingleXorCrossTrigger]
+Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*zPtReweightWeight*sf_SingleXorCrossTrigger*41.529]
+
+[SampleSet: 
+Name: TTL_anti
+Source: et-NOMINAL_ntuple_TT.root
+Source Path: et-NOMINAL_ntuple_TT.root
+Cut: q_1 * q_2 < 0 && (byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5 & iso_1 < 0.15) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_2>0.5) & (againstElectronTightMVA6_2>0.5) ) && mt_1 < 50 && ( ( (trg_crossele_ele24tau30 && pt_1 < 28) | trg_singleelectron_27 | trg_singleelectron_32 | trg_singleelectron_35 ) & pt_2 > 30 ) && (((gen_match_2 == 6) || ((gen_match_1 == 3 & gen_match_2 == 5 ))) < 0.5)
+Target: [TargetCategory: real;3;7.2]
+Event Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*topPtReweightWeightRun1*sf_SingleXorCrossTrigger]
+Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*topPtReweightWeightRun1*sf_SingleXorCrossTrigger*41.529]
+
+[SampleSet: 
+Name: VVT_anti
+Source: et-NOMINAL_ntuple_VV.root
+Source Path: et-NOMINAL_ntuple_VV.root
+Cut: q_1 * q_2 < 0 && (byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5 & iso_1 < 0.15) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_2>0.5) & (againstElectronTightMVA6_2>0.5) ) && mt_1 < 50 && ( ( (trg_crossele_ele24tau30 && pt_1 < 28) | trg_singleelectron_27 | trg_singleelectron_32 | trg_singleelectron_35 ) & pt_2 > 30 ) && ((gen_match_1 == 3 & gen_match_2 == 5 )) 
+Target: [TargetCategory: real;3;7.2]
+Event Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*sf_SingleXorCrossTrigger]
+Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*sf_SingleXorCrossTrigger*41.529]
+
+[SampleSet: 
+Name: TTT_anti
+Source: et-NOMINAL_ntuple_TT.root
+Source Path: et-NOMINAL_ntuple_TT.root
+Cut: q_1 * q_2 < 0 && (byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5 & iso_1 < 0.15) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_2>0.5) & (againstElectronTightMVA6_2>0.5) ) && mt_1 < 50 && ( ( (trg_crossele_ele24tau30 && pt_1 < 28) | trg_singleelectron_27 | trg_singleelectron_32 | trg_singleelectron_35 ) & pt_2 > 30 ) && ((gen_match_1 == 3 & gen_match_2 == 5 )) 
+Target: [TargetCategory: real;3;7.2]
+Event Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*topPtReweightWeightRun1*sf_SingleXorCrossTrigger]
+Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*topPtReweightWeightRun1*sf_SingleXorCrossTrigger*41.529]
+
+[SampleSet: 
+Name: QCD_estimate
+Source: et-NOMINAL_ntuple_Data.root
+Source Path: et-NOMINAL_ntuple_Data.root
+Cut: q_1 * q_2 > 0 && (byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5 & iso_1 < 0.15) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_2>0.5) & (againstElectronTightMVA6_2>0.5) ) && mt_1 < 50 && ( ( (trg_crossele_ele24tau30 && pt_1 < 28) | trg_singleelectron_27 | trg_singleelectron_32 | trg_singleelectron_35 ) & pt_2 > 30 )
+Target: [TargetCategory: qcd;2;2.5]
+Event Weight: 0.571225332448]
+Weight: 0.571225332448]
+
+[SampleSet: 
+Name: VVJ_anti
+Source: et-NOMINAL_ntuple_VV.root
+Source Path: et-NOMINAL_ntuple_VV.root
+Cut: q_1 * q_2 < 0 && (byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5 & iso_1 < 0.15) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_2>0.5) & (againstElectronTightMVA6_2>0.5) ) && mt_1 < 50 && ( ( (trg_crossele_ele24tau30 && pt_1 < 28) | trg_singleelectron_27 | trg_singleelectron_32 | trg_singleelectron_35 ) & pt_2 > 30 ) && (gen_match_2 == 6)
+Target: [TargetCategory: w;1;2.5]
+Event Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*sf_SingleXorCrossTrigger]
+Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*sf_SingleXorCrossTrigger*41.529]
+
+[SampleSet: 
+Name: ZTT_anti
+Source: et-NOMINAL_ntuple_DY.root
+Source Path: et-NOMINAL_ntuple_DY.root
+Cut: q_1 * q_2 < 0 && (byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5 & iso_1 < 0.15) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_2>0.5) & (againstElectronTightMVA6_2>0.5) ) && mt_1 < 50 && ( ( (trg_crossele_ele24tau30 && pt_1 < 28) | trg_singleelectron_27 | trg_singleelectron_32 | trg_singleelectron_35 ) & pt_2 > 30 ) && ((gen_match_1 == 3 & gen_match_2 == 5 ))
+Target: [TargetCategory: real;3;7.2]
+Event Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*zPtReweightWeight*sf_SingleXorCrossTrigger]
+Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*zPtReweightWeight*sf_SingleXorCrossTrigger*41.529]
+
+[SampleSet: 
+Name: W_anti
+Source: et-NOMINAL_ntuple_WJets.root
+Source Path: et-NOMINAL_ntuple_WJets.root
+Cut: q_1 * q_2 < 0 && (byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5 & iso_1 < 0.15) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_2>0.5) & (againstElectronTightMVA6_2>0.5) ) && mt_1 < 50 && ( ( (trg_crossele_ele24tau30 && pt_1 < 28) | trg_singleelectron_27 | trg_singleelectron_32 | trg_singleelectron_35 ) & pt_2 > 30 )
+Target: [TargetCategory: w;1;2.5]
+Event Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*sf_SingleXorCrossTrigger]
+Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*sf_SingleXorCrossTrigger*41.529]
+
+[SampleSet: 
+Name: ZJ_anti
+Source: et-NOMINAL_ntuple_DY.root
+Source Path: et-NOMINAL_ntuple_DY.root
+Cut: q_1 * q_2 < 0 && (byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5 & iso_1 < 0.15) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_2>0.5) & (againstElectronTightMVA6_2>0.5) ) && mt_1 < 50 && ( ( (trg_crossele_ele24tau30 && pt_1 < 28) | trg_singleelectron_27 | trg_singleelectron_32 | trg_singleelectron_35 ) & pt_2 > 30 ) && (gen_match_2 == 6)
+Target: [TargetCategory: w;1;2.5]
+Event Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*zPtReweightWeight*sf_SingleXorCrossTrigger]
+Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*zPtReweightWeight*sf_SingleXorCrossTrigger*41.529]
+
+[SampleSet: 
+Name: TTJ_anti
+Source: et-NOMINAL_ntuple_TT.root
+Source Path: et-NOMINAL_ntuple_TT.root
+Cut: q_1 * q_2 < 0 && (byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5 & iso_1 < 0.15) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_2>0.5) & (againstElectronTightMVA6_2>0.5) ) && mt_1 < 50 && ( ( (trg_crossele_ele24tau30 && pt_1 < 28) | trg_singleelectron_27 | trg_singleelectron_32 | trg_singleelectron_35 ) & pt_2 > 30 ) && (gen_match_2 == 6) 
+Target: [TargetCategory: tt;0;17.1]
+Event Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*topPtReweightWeightRun1*sf_SingleXorCrossTrigger]
+Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*topPtReweightWeightRun1*sf_SingleXorCrossTrigger*41.529]
+
+[SampleSet: 
+Name: VVL_anti
+Source: et-NOMINAL_ntuple_VV.root
+Source Path: et-NOMINAL_ntuple_VV.root
+Cut: q_1 * q_2 < 0 && (byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2 > 0.5 & byTightIsolationMVArun2017v2DBoldDMwLT2017_2 < 0.5 & iso_1 < 0.15) && ((extramuon_veto < 0.5) & (extraelec_veto < 0.5) & (dilepton_veto<0.5) & (againstMuonLoose3_2>0.5) & (againstElectronTightMVA6_2>0.5) ) && mt_1 < 50 && ( ( (trg_crossele_ele24tau30 && pt_1 < 28) | trg_singleelectron_27 | trg_singleelectron_32 | trg_singleelectron_35 ) & pt_2 > 30 ) && (((gen_match_2 == 6) || ((gen_match_1 == 3 & gen_match_2 == 5 ))) < 0.5)
+Target: [TargetCategory: real;3;7.2]
+Event Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*sf_SingleXorCrossTrigger]
+Weight: weight*0.991*( 0.89*(gen_match_2 == 5) + 1.*(gen_match_2 !=5) )*sf_SingleXorCrossTrigger*41.529]
+
