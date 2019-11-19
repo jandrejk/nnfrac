@@ -1,0 +1,99 @@
+{
+    "ff_file":{
+        "et":"/afs/cern.ch/work/m/msajatov/private/eosmount/user/m/msajatov/data/higgs/Jet2TauFakesFiles/SM2017_ML/20181216/et/fakeFactors_tight.root",
+        "mt":"/afs/cern.ch/work/m/msajatov/private/eosmount/user/m/msajatov/data/higgs/Jet2TauFakesFiles/SM2017_ML/20181216/mt/fakeFactors_tight.root",
+        "tt":"/afs/cern.ch/work/m/msajatov/private/eosmount/user/m/msajatov/data/higgs/Jet2TauFakesFiles/SM2017_ML/20181216/tt/fakeFactors_tight.root"
+    },
+   "inputs":{
+        "et": {"vars":["pt_2","decayMode_2","njets","m_vis","mt_1","iso_1"],
+               "frac":["QCD","W","TT"],
+               "binning":["pt_2","njets"]
+        },
+        "mt": {"vars":["pt_2","decayMode_2","njets","m_vis","mt_1","iso_1"],
+               "frac":["QCD","W","TT"],
+               "binning":["pt_2","njets"]
+        },
+        "tt":{
+            "aiso1": {"vars":["pt_1","pt_2","decayMode_1","njets","m_vis"], 
+                      "frac":["QCD","W","TT"]
+            },
+            "aiso2": {"vars":["pt_2","pt_1","decayMode_2","njets","m_vis"],
+                      "frac":["QCD","W","TT"] 
+            },
+            "binning":["pt_2","njets"]
+        }
+    },
+    "uncerts": {
+
+        "et":["ff_qcd_syst_up",
+              "ff_qcd_syst_down",
+              "ff_qcd_dm0_njet0_stat_up",
+              "ff_qcd_dm0_njet0_stat_down",
+              "ff_qcd_dm0_njet1_stat_up",
+              "ff_qcd_dm0_njet1_stat_down",
+              "ff_w_syst_up",
+              "ff_w_syst_down",
+              "ff_w_dm0_njet0_stat_up",
+              "ff_w_dm0_njet0_stat_down",
+              "ff_w_dm0_njet1_stat_up",
+              "ff_w_dm0_njet1_stat_down",
+              "ff_tt_syst_up",
+              "ff_tt_syst_down",
+              "ff_tt_dm0_njet0_stat_up",
+              "ff_tt_dm0_njet0_stat_down",
+              "ff_tt_dm0_njet1_stat_up",
+              "ff_tt_dm0_njet1_stat_down"
+        ],
+        "mt":["ff_qcd_syst_up",
+              "ff_qcd_syst_down",
+              "ff_qcd_dm0_njet0_stat_up",
+              "ff_qcd_dm0_njet0_stat_down",
+              "ff_qcd_dm0_njet1_stat_up",
+              "ff_qcd_dm0_njet1_stat_down",
+              "ff_w_syst_up",
+              "ff_w_syst_down",
+              "ff_w_dm0_njet0_stat_up",
+              "ff_w_dm0_njet0_stat_down",
+              "ff_w_dm0_njet1_stat_up",
+              "ff_w_dm0_njet1_stat_down",
+              "ff_tt_syst_up",
+              "ff_tt_syst_down",
+              "ff_tt_dm0_njet0_stat_up",
+              "ff_tt_dm0_njet0_stat_down",
+              "ff_tt_dm0_njet1_stat_up",
+              "ff_tt_dm0_njet1_stat_down"
+        ],
+        "tt":["ff_qcd_syst_up",
+              "ff_qcd_syst_down",
+              "ff_qcd_dm0_njet0_stat_up",
+              "ff_qcd_dm0_njet0_stat_down",
+              "ff_qcd_dm0_njet1_stat_up",
+              "ff_qcd_dm0_njet1_stat_down",
+              "ff_w_syst_up",
+              "ff_w_syst_down",
+              "ff_tt_syst_up",
+              "ff_tt_syst_down"]
+    },
+    "uncert_naming": {
+
+        "ff_qcd_syst_up":               "CMS_ff_qcd{channel}_syst_Run2017Up",
+        "ff_qcd_syst_down":             "CMS_ff_qcd{channel}_syst_Run2017Down",
+        "ff_qcd_dm0_njet0_stat_up":     "CMS_ff_qcd_njet0{channel}_stat_Run2017Up",
+        "ff_qcd_dm0_njet0_stat_down":   "CMS_ff_qcd_njet0{channel}_stat_Run2017Down",
+        "ff_qcd_dm0_njet1_stat_up":     "CMS_ff_qcd_njet1{channel}_stat_Run2017Up",
+        "ff_qcd_dm0_njet1_stat_down":   "CMS_ff_qcd_njet1{channel}_stat_Run2017Down",
+        "ff_w_syst_up":                 "CMS_ff_w{channel}_syst_Run2017Up",
+        "ff_w_syst_down":               "CMS_ff_w{channel}_syst_Run2017Down",
+        "ff_w_dm0_njet0_stat_up":       "CMS_ff_w_njet0{channel}_stat_Run2017Up",
+        "ff_w_dm0_njet0_stat_down":     "CMS_ff_w_njet0{channel}_stat_Run2017Down",
+        "ff_w_dm0_njet1_stat_up":       "CMS_ff_w_njet1{channel}_stat_Run2017Up",
+        "ff_w_dm0_njet1_stat_down":     "CMS_ff_w_njet1{channel}_stat_Run2017Down",
+        "ff_tt_syst_up":                "CMS_ff_tt{channel}_syst_Run2017Up",
+        "ff_tt_syst_down":              "CMS_ff_tt{channel}_syst_Run2017Down",
+        "ff_tt_dm0_njet0_stat_up":      "CMS_ff_tt_njet0_stat_Run2017Up",
+        "ff_tt_dm0_njet0_stat_down":    "CMS_ff_tt_njet0_stat_Run2017Down",
+        "ff_tt_dm0_njet1_stat_up":      "CMS_ff_tt_njet1_stat_Run2017Up",
+        "ff_tt_dm0_njet1_stat_down":    "CMS_ff_tt_njet1_stat_Run2017Down"
+    }
+        
+}
