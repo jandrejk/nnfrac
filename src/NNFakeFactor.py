@@ -28,11 +28,11 @@ def main():
     
     ff = NNFakeFactor(channel, Var("m_vis", channel), "2017")
     
-#     fraction_outpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), "fractions_output.root")    
-#     ff.saveFractions(cut, path, weight = Weight("1.0",[]), outpath=fraction_outpath)
+    fraction_outpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), "fractions_output.root")    
+    ff.saveFractions(cut, path, weight = Weight("1.0",[]), outpath=fraction_outpath)
     
-    ff_weight_outpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), "ff_weights_output.root")
-    ff.saveFFWeights(cut, path, weight = Weight("1.0",[]), outpath=ff_weight_outpath)
+#     ff_weight_outpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), "ff_weights_output.root")
+#     ff.saveFFWeights(cut, path, weight = Weight("1.0",[]), outpath=ff_weight_outpath)
 
 
 class NNFakeFactor:    
@@ -74,7 +74,16 @@ class NNFakeFactor:
         complete_df.to_root(outpath, key="TauCheck", mode="w")
         
     def saveFractions(self, cut, path, weight, outpath):
-        data = self.read_data(cut, path, weight)        
+        calculator = FFCalculator(channel=self.channel,
+                              variable=self.variable,
+                              era=self.era,
+                              real_nominal=["xy"],
+                              real_shifted=["xy"],
+                              add_systematics=True,
+                              debug=True
+                              )
+        
+        data = calculator.read_data(cut, path, weight)
         data.to_root(outpath, key="TauCheck", mode="w")
         
 
