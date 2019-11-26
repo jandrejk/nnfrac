@@ -82,7 +82,7 @@ class NNFakeFactor:
         calculator = FFCalculator(channel=self.channel,
                               variable=self.variable,
                               era=self.era,
-                              renormalize_fractions=["xy"],
+                              renormalize_fractions=True,
                               add_systematics=True,
                               debug=True
                               )
@@ -95,7 +95,7 @@ class NNFakeFactor:
         calculator = FFCalculator(channel=self.channel,
                               variable=self.variable,
                               era=self.era,
-                              renormalize_fractions=["xy"],
+                              renormalize_fractions=True,
                               add_systematics=True,
                               debug=True
                               )

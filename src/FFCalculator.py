@@ -29,7 +29,7 @@ class FFCalculator:
     nn_frac_config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), "NNFractions/default_nn_frac_config.json")
     nn_fractions = None
     
-    def __init__(self, channel, variable, era, add_systematics = True, debug = False, renormalize_fractions={}):
+    def __init__(self, channel, variable, era, add_systematics = True, debug = False, renormalize_fractions=True):
 
         self.channel = channel
 #         self.fracs = {}
