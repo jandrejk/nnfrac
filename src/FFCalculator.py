@@ -29,7 +29,7 @@ class FFCalculator:
     nn_frac_config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), "NNFractions/default_nn_frac_config.json")
     nn_fractions = None
     
-    def __init__(self, channel, variable, era, add_systematics = True, debug = False, real_nominal={}, real_shifted={}):
+    def __init__(self, channel, variable, era, add_systematics = True, debug = False, renormalize_fractions={}):
 
         self.channel = channel
 #         self.fracs = {}
@@ -44,8 +44,7 @@ class FFCalculator:
         self.ff_isopen = True
 
 #         self.data_file = data_file
-        self.real_nominal = real_nominal
-        self.real_shifted = real_shifted
+        self.renormalize_fractions = renormalize_fractions
 
         self.inputs = self.config["inputs"][channel]
 
@@ -144,24 +143,15 @@ class FFCalculator:
             ff_weights.append(self.getFFWeightForEvent(row))
 
         ff_weights = DataFrame(ff_weights)
+        ff_weights.columns = self.uncerts
+        
+        print "uncerts:"
+        print self.uncerts
 
         if self.channel == "tt":
             ff_weights *= 0.5
 
-        return ff_weights
-    
-    def appendFFWeights(self, data_content):
-        ff_weights = []
-        # This is slow. Figure out how to use it with vectorization.
-        for _, row in data_content.iterrows():
-            ff_weights.append(self.getFFWeightForEvent(row))
-
-        ff_weights = DataFrame(ff_weights)
-
-        if self.channel == "tt":
-            ff_weights *= 0.5
-            
-        result = concat([data_content, ff_weights], axis=1)
+        result = concat([data_content["evt"], ff_weights], axis=1)
 
         return result
     
@@ -217,7 +207,7 @@ class FFCalculator:
         frac["W"] = row["predicted_frac_prob_1"]
         frac["TT"] = row["predicted_frac_prob_0"]
 
-        if self.real_nominal:
+        if self.renormalize_fractions:
             denom = (frac["QCD"] + frac["W"] + frac["TT"])
             if denom > 0:
                 for f in ["QCD", "W", "TT"]:

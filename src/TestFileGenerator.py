@@ -13,7 +13,7 @@ def main():
     path = os.path.join(dirpath, filename)
     
     Cut.cutfile = "./cuts_2017.json"
-    cut = Cut(cutstring="-OS- && -ISO- && -VETO- && -MT- && -TRIG-", channel=channel)
+    cut = Cut(cutstring="-OS- && -ANTIISO- && -VETO- && -MT- && -TRIG-", channel=channel)
     
     
     branches = [
@@ -72,13 +72,15 @@ def main():
     # for tt a chunksize of 5000 results in 37 events in the SR
     # for mt a chunksize of 2000 results in 36 events in the SR
     # for et a chunksize of 1000 results in 34 events in the SR
-    df_iter = rp.read_root(paths=path, where=cut.getForDF(), columns=branches, chunksize=2000)
+    
+#     df_iter = rp.read_root(paths=path, where=cut.getForDF(), columns=branches, chunksize=2000)
+    df_iter = rp.read_root(paths=path, where="", columns=branches, chunksize=2000)
     
     print df_iter
 
     # get first chunk only (there must be a better way to do this but next() is not implemented for the genchunk...)
     for df in df_iter:
-        print df
+        print df["evt"]
         break
     
     outpath = "../testdata/{0}_test.root".format(channel)
