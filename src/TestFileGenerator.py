@@ -9,11 +9,11 @@ def main():
     channel = "mt"
     
     filename = "{0}-NOMINAL_ntuple_Data.root".format(channel)
-    dirpath = "/eos/user/m/msajatov/data/ntuples_scp/v10"
+    dirpath = "/afs/hephy.at/data/higgs01/v10"
     path = os.path.join(dirpath, filename)
     
     Cut.cutfile = "./cuts_2017.json"
-    cut = Cut(cutstring="-OS- && -ANTIISO- && -VETO- && -MT- && -TRIG-", channel=channel)
+    cut = Cut(cutstring="-OS- && -ANTIISO2- && -VETO- && -MT- && -TRIG-", channel=channel)
     
     
     branches = [
@@ -82,7 +82,7 @@ def main():
     for df in df_iter:
         print df["evt"]
         break
-    
+    print "{} events in the AR".format(str(len(df)))
     outpath = "../testdata/{0}_test.root".format(channel)
     df.to_root(outpath, key="TauCheck", mode="w")
 

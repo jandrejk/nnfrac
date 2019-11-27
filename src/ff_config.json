@@ -1,7 +1,7 @@
 {
     "ff_file":{
         "et":"/afs/cern.ch/work/m/msajatov/private/eosmount/user/m/msajatov/data/higgs/Jet2TauFakesFiles/SM2017_ML/20181216/et/fakeFactors_tight.root",
-        "mt":"/afs/cern.ch/work/m/msajatov/private/eosmount/user/m/msajatov/data/higgs/Jet2TauFakesFiles/SM2017_ML/20181216/mt/fakeFactors_tight.root",
+        "mt":"/afs/hephy.at/data/mspanring01/Jet2TauFakesFiles/SM2017_ML/20181216/mt/fakeFactors_tight.root",
         "tt":"/afs/cern.ch/work/m/msajatov/private/eosmount/user/m/msajatov/data/higgs/Jet2TauFakesFiles/SM2017_ML/20181216/tt/fakeFactors_tight.root"
     },
    "inputs":{

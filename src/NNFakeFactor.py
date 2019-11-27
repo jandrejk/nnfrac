@@ -15,25 +15,44 @@ import root_pandas as rp
 from pandas import DataFrame, concat
 import pandas as pd
 
+import argparse
 
 def main():
     
-    channel = "mt"
+    parser = argparse.ArgumentParser(description='Input for NN-FF framework')
+    
+    
+    parser.add_argument('-era', dest='era', type=str, choices=["2016","2017","2018"],
+                        help='Year of data taking', default="2017")
+    parser.add_argument('-c', dest='channel', type=str, choices=["mt","et","tt"],
+                        help='HTT decay channel', default="mt")
+
+    parser.add_argument('-var', dest='variable', type=str,
+                        help='Variable for plotting', default="m_vis")
+
+
+    args = parser.parse_args()
+    print "era: {}".format(args.era)
+
+    channel = args.channel
+    era = args.era
+    variable = args.variable
     
     filename = "{0}_test.root".format(channel)
     dirpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../testdata")
     path = os.path.join(dirpath, filename)
     
-    Cut.cutfile = os.path.join(os.path.dirname(os.path.realpath(__file__)), "cuts_2017.json")
-    cut = Cut(cutstring="-OS- && -ANTIISO- && -VETO- && -MT- && -TRIG-", channel=channel)
+    Cut.cutfile = os.path.join(os.path.dirname(os.path.realpath(__file__)), "cuts_{era}.json".format
+    (era=era))
+    cut = Cut(cutstring="-OS- && -ANTIISO2- && -VETO- && -MT- && -TRIG-", channel=channel)
     
-    ff = NNFakeFactor(channel, Var("m_vis", channel), "2017")
+    ff = NNFakeFactor(channel, Var(variable, channel), era)
     
-#     fraction_outpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), "fractions_output.root")    
-#     ff.saveFractions(cut, path, weight = Weight("1.0",[]), outpath=fraction_outpath)
+    # fraction_outpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), "fractions_output.root")    
+    # ff.saveFractions(cut, path, weight = Weight("1.0",[]), outpath=fraction_outpath)
     
-#     ff_weight_outpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), "ff_weights_output.root")
-#     ff.saveFFWeights(cut, path, weight = Weight("1.0",[]), outpath=ff_weight_outpath)
+    ff_weight_outpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), "ff_weights_output.root")
+    ff.saveFFWeights(cut, path, weight = Weight("1.0",[]), outpath=ff_weight_outpath)
 
     friend_outpath = os.path.join(dirpath, "friends/friend.root") 
     ff.saveFFWeightsToFriend(cut, path, weight = Weight("1.0",[]), outpath=friend_outpath)
